@@ -45,7 +45,7 @@ model Vote {
   post   Post   @relation(fields: [postId], references: [id])
   postId String  
 
-  @@unique([userId, postId])  // ✅ Prevents duplicate votes
+  @@unique([userId, postId])  
   @@map("votes")
 }
 
