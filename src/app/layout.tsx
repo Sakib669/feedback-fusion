@@ -5,6 +5,8 @@ import { Toaster } from "sonner";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ClerkProvider } from "@clerk/nextjs";
+import { ThemeProvider } from "@/components/theme-provider"
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,24 +29,34 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">
-        <ClerkProvider>
-          {/* navbar */}
-          <Navbar />
+    <ClerkProvider>
+      <html
+        suppressHydrationWarning
+        lang="en"
+        className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      >
+        <body className="min-h-full flex flex-col">
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {/* navbar */}
+            <Navbar />
 
-          {/* main section  */}
-          <main className="flex-1 container mx-auto px-4 py-8">{children}</main>
+            {/* main section  */}
+            <main className="flex-1 container mx-auto px-4 py-8">
+              {children}
+            </main>
 
-          {/* footer */}
-          <Footer />
+            {/* footer */}
+            <Footer />
 
-          <Toaster />
-        </ClerkProvider>
-      </body>
-    </html>
+            <Toaster />
+          </ThemeProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
