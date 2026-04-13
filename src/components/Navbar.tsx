@@ -1,9 +1,10 @@
 "use client";
 
-import { SignInButton, useClerk } from "@clerk/nextjs";
+import { Show, SignInButton, useClerk } from "@clerk/nextjs";
 import { Map, MessageSquare, Sparkle } from "lucide-react";
 import Link from "next/link";
 import ToggleTheme from "./ToggleTheme";
+import { Button } from "./ui/button";
 
 interface Props {}
 
@@ -35,7 +36,16 @@ const Navbar = ({}: Props) => {
             <MessageSquare className="h-4 w-4" />
             Feedback
           </Link>
-          <ToggleTheme/>
+        </div>
+        <div className="flex items-center gap-4">
+          <ToggleTheme />
+          <Show when={"signed-out"}>
+            <SignInButton>
+              <Button asChild>
+                <Link href={"/sign-in"}>Sign In</Link>
+              </Button>
+            </SignInButton>
+          </Show>
         </div>
       </div>
     </nav>
