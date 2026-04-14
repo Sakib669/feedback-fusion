@@ -2,7 +2,7 @@ import { Heart } from "lucide-react";
 
 interface Props {}
 
-const Footer = ({}: Props) => {
+const Footer =  ({}: Props) => {
   const currentYear = new Date().getFullYear();
   return (
     <footer className="border-t bg-background mt-auto">

@@ -1,6 +1,6 @@
 "use client";
 
-import { Show, SignInButton, useClerk } from "@clerk/nextjs";
+import { Show, SignInButton, useClerk, UserButton } from "@clerk/nextjs";
 import { Map, MessageSquare, Sparkle } from "lucide-react";
 import Link from "next/link";
 import ToggleTheme from "./ToggleTheme";
@@ -45,6 +45,9 @@ const Navbar = ({}: Props) => {
                 <Link href={"/sign-in"}>Sign In</Link>
               </Button>
             </SignInButton>
+          </Show>
+          <Show when={"signed-in"}>
+            <UserButton/>
           </Show>
         </div>
       </div>
