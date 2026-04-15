@@ -59,7 +59,7 @@ const submitFeedback = async (
     console.error("Something went wrong. Please try again.", error);
     // dismiss the loading toast and show success
     toast.dismiss(loadingToast);
-    toast.error(error.message || "Something went wrong.");
+    toast.error("Something went wrong.");
 
     return {
       success: false,
