@@ -45,7 +45,6 @@ const submitFeedback = async (
       throw new Error("Failed to create post");
     }
 
-    console.log("response this is respone", response)
 
     // dismiss the loading toast and show success
     toast.dismiss(loadingToast);
