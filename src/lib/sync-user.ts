@@ -46,9 +46,9 @@ export const syncCurrentUser = async () => {
           role: isFirstUser ? "admin" : "user",
         },
       });
-      console.log(`New user created: ${email} with role: ${dbUser.role}`);
-      return dbUser;
     }
+    console.log(`New user created: ${email} with role: ${dbUser.role}`);
+    return dbUser;
   } catch (error) {
     console.error("Error syncing user form Clerk: ", error);
     throw error;

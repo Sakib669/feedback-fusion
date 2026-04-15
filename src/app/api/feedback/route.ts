@@ -6,11 +6,14 @@ export const POST = async (req: NextRequest) => {
   try {
     const dbUser = await syncCurrentUser();
 
+    console.log(dbUser)
+
     if (!dbUser) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const body = await req.json();
+
 
     const { title, description, category } = body;
 
@@ -22,6 +25,8 @@ export const POST = async (req: NextRequest) => {
         authorId: dbUser.id,
       },
     });
+
+    console.log("this is post ", post)
 
     return NextResponse.json(post);
   } catch (error) {
