@@ -71,15 +71,10 @@ const FeedbackList = ({ initialPosts, userId }: Props) => {
         }),
       );
     } catch (error) {
-      console.error("Something went wrong. Please try again.", error);
+      console.error("Failed to submit vote.", error);
       // dismiss the loading toast and show success
       toast.dismiss(loadingToast);
-      toast.error("Something went wrong.");
-
-      return {
-        success: false,
-        error: "Failed to submit feedback",
-      };
+      toast.error("Failed to submit vote. Please try again");
     }
   };
   return (
