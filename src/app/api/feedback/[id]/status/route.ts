@@ -29,6 +29,7 @@ export const PATCH = async (
 
     const { status } = await req.json();
     const { id: postId } = await params;
+    const numericPostId = Number(postId)
 
     // validate status
     if (!STATUS_ORDER.includes(status)) {
