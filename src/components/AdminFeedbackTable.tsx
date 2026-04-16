@@ -2,11 +2,24 @@
 
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "./ui/table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "./ui/table";
 import { getCategoryDesign } from "@/app/data/category-data";
 import { Badge } from "./ui/badge";
 import { Edit, Save, ThumbsUp, User, X } from "lucide-react";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./ui/select";
 import { STATUS_GROUPS, STATUS_ORDER } from "@/app/data/status-data";
 import { Button } from "./ui/button";
 import { toast } from "sonner";
@@ -20,68 +33,70 @@ const AdminFeedbackTable = ({ posts }: Props) => {
   const [postStatus, setPostStatus] = useState<Record<number, string>>(
     Object.fromEntries(posts.map((post) => [post.id, post.status])),
   );
-  const [originalStatus, setOriginalStatus] = useState<Record<number, string>>({})
+  const [originalStatus, setOriginalStatus] = useState<Record<number, string>>(
+    {},
+  );
 
   const getStatusIcon = (status: string) => {
-    const statusGroup = STATUS_GROUPS[status as keyof typeof STATUS_GROUPS]
+    const statusGroup = STATUS_GROUPS[status as keyof typeof STATUS_GROUPS];
 
-    if(!statusGroup) return null
+    if (!statusGroup) return null;
 
     const Icon = statusGroup.icon;
-    return <Icon className="h-3 w-3 mr-1" />
-  }
+    return <Icon className="h-3 w-3 mr-1" />;
+  };
 
   const startEditing = (postId: number) => {
     setOriginalStatus((prev) => ({
-        ...prev,
-        [postId]: originalStatus[postId]
-    }))
-  }
+      ...prev,
+      [postId]: originalStatus[postId],
+    }));
+    setEditingPostId(postId);
+  };
 
   const cancelEditing = (postId: number) => {
-    if(originalStatus[postId]){
-        setPostStatus((prev) => ({
-            ...prev,
-            [postId]: originalStatus[postId]
-        }))
+    if (originalStatus[postId]) {
+      setPostStatus((prev) => ({
+        ...prev,
+        [postId]: originalStatus[postId],
+      }));
     }
-    setEditingPostId(null)
-  }
+    setEditingPostId(null);
+  };
 
   const saveStatus = async (postId: number) => {
     // show loading toast
-    const loadingToast = toast.loading("Saving status.....")
+    const loadingToast = toast.loading("Saving status.....");
 
     try {
-        const response = await fetch(`/api/feedback/${postId}/status`, {
-            method: "PATCH",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({status: postStatus[postId]})
-        })
+      const response = await fetch(`/api/feedback/${postId}/status`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ status: postStatus[postId] }),
+      });
 
-        if(!response.ok){
-            throw new Error("Failed to update status")
-        }
+      if (!response.ok) {
+        throw new Error("Failed to update status");
+      }
 
-        // dissmiss the loading toast
-        toast.dismiss(loadingToast)
-        toast.success("Feedback status updated successfully")
+      // dissmiss the loading toast
+      toast.dismiss(loadingToast);
+      toast.success("Feedback status updated successfully");
     } catch (error) {
-        console.error("Failed to update status:", error)
-        toast.dismiss(loadingToast)
-        toast.error("Failed to update status. Please try again")
-        
+      console.error("Failed to update status:", error);
+      toast.dismiss(loadingToast);
+      toast.error("Failed to update status. Please try again");
     }
-  }
+  };
 
   const handleStatusChange = (postId: number, newStatus: string) => {
     setPostStatus((prev) => ({
-        ...prev,
-        [postId]: newStatus,
-    }))
-  }
+      ...prev,
+      [postId]: newStatus,
+    }));
+  };
 
   return (
     <Card>
