@@ -34,7 +34,6 @@ export const PATCH = async (
     if (!STATUS_ORDER.includes(status)) {
       return NextResponse.json({ error: "Invalid status" }, { status: 400 });
     }
-
     const updatedPost = await prisma.post.update({
       where: { id: postId },
       data: {
