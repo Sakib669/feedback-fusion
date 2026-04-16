@@ -78,7 +78,7 @@ const FeedbackPage = async ({}: Props) => {
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
-                  {categories.map((cat) => {
+                  {categories.map((cat:any) => {
                     const design = getCategoryDesign(cat.category);
                     const Icon = design.icon;
 
