@@ -33,10 +33,10 @@ const RoadmapPage = async ({}: Props) => {
   });
 
   const groupedPosts = {
-    under_review: posts.filter((p:string) => p.status === "under_review"),
-    planned: posts.filter((p:string) => p.status === "planned"),
-    in_progress: posts.filter((p:string) => p.status === "in_progress"),
-    completed: posts.filter((p:string) => p.status === "completed"),
+    under_review: posts.filter((p:any) => p.status === "under_review"),
+    planned: posts.filter((p:any) => p.status === "planned"),
+    in_progress: posts.filter((p:any) => p.status === "in_progress"),
+    completed: posts.filter((p:any) => p.status === "completed"),
   };
 
   const totalVotes = posts.reduce((acc, post) => acc + post.votes.length, 0);
