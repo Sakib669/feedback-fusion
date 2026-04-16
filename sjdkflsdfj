@@ -1,0 +1,19 @@
+[33m54e4f9f[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m fix applied
+[33mf3f3a2b[m updated the readme again
+[33m8b6ebea[m updated the readme file
+[33m961e26f[m fixed action button bug
+[33m1f3a4f3[m implemented admin dashboard
+[33mab5afa6[m added roadmap page
+[33m5a27b43[m implemented feedback list
+[33mfd4dff4[m added new feedback form
+[33m4ab2ded[m fixed: dbUser code block missmatch issue
+[33mc09a3ea[m added backend api
+[33m1b816bd[m completed home section
+[33m6229920[m added gradient header
+[33mdeca87e[m added auth pages
+[33m4795440[m added toggle themes
+[33mf730e88[m implemented clerk auth
+[33m8de2ad4[m migrated schema
+[33mf002cf8[m added prisma schemas
+[33m50e846e[m feat: initial commit
+[33m32709a7[m Initial commit from Create Next App
